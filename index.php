@@ -24,7 +24,7 @@ for ($linha = 0; $linha < 10; $linha++) {
 echo "<br><br><br><br>";
 
 //PALAVRAS QUE SERÃO ENVIADAS PARA MATRIZ
-$todaspalavras = array("BLUE","BLACK","RED","SCARLET");
+$todaspalavras = array("BLUE","BLACK","RED","SCARLET","DEAD");
 
 //IMPRIMIR PALAVRAS
 for ($a = 0; $a < count($todaspalavras); $a ++) {
@@ -87,27 +87,49 @@ function encontrarSemelhante($arrayLetra,$matriz){
 	if ($verifica == 0){
 		//TENTAR ENCONTRAR LETRA IGUAL PARA AS DE MAIS LETRAS DA PALVRA iniciando de 1(um) 
 		for ($a = 1; $a < count($arrayLetra); $a ++) {
-			//GAMBIARRA MASTER
+			//GAMBIARRA ;)
 			//CONDICIONAL PARA SABER SE JÀ ENCONTROU LETRA NA MATRIZ
+			//QUAL LOGICA? 
+			//Resposta: se xxxx[0] estiver vazio ou seja não encontrou nenhuma letra semelhante na ultima execução do buscaLetra
 			if ($xxxx[0] == ""){
 				//SÒ SERÁ ExECUTADA CASO NÃO ENCONTRE NADA NA ULTIMA BUSCA
 				//BUSCAR LETRA igual na matriz INICIONADO SEMPRE DA POSIçÂO 0(ZERO) ou seja primeira letra
 				$xxxx = buscaLetra($arrayLetra[$a],$matriz);
 			}
+			
+			//GAMBIARRA ;)
+			//CONDICIONAL PARA SABER SE JÀ ENCONTROU LETRA NA MATRIZ
+			//QUAL LOGICA? 
+			//Resposta: se xxxx[2] estiver igual 1 ou seja encontrou letra semelhante na execução do buscaLetra
+			//grava o resultado destro do array
 			if ($xxxx[2] == 1 ){
+				
 				//array[0] ->linha
 				$array[0] = $xxxx[0];
+				
 				//array[1] ->coluna
 				$array[1] = $xxxx[1];
-	
+				
+				//$array[2] ->posição da letra na palavra
 				$array[2] = $a;
+				
+				//verifica -> descobre se encotrou ou não uma letra igual na matriz
+				//NESTE CASO ENCONTROU - Valor será igual 1 (um)
 				$verifica = $xxxx[2];
+				
+				////VARIAVEL PARA MANTER GAMBIARRA 100% :D
+				/// ZERA A Variavel que mantem a gambiarra
+				///para não entrar nesse if novamente. Aqui que está o problema: Sempre retorno a primeira solução encontrada.
 				$xxxx[2] = 0;
 			}
 		}
 	}
+	
+	//se leu todas as letras e não encontrou semelhante coloca a palavra nessa posição: linha =4 e coluna = 6
 	if ($verifica == 0){
+		//linha 
 		$array[0] = 4;
+		//coluna
 		$array[1] = 6;
 	}
 	
