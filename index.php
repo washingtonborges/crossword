@@ -24,7 +24,7 @@ for ($linha = 0; $linha < 10; $linha++) {
 echo "<br><br><br><br>";
 
 //PALAVRAS QUE SERÃO ENVIADAS PARA MATRIZ
-$todaspalavras = array("BLUE","BLACK","RED","SCARLET","DEAD");
+$todaspalavras = array("BLUE","BLACK","RED","SCARLET");
 
 //IMPRIMIR PALAVRAS
 for ($a = 0; $a < count($todaspalavras); $a ++) {
