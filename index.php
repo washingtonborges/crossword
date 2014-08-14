@@ -157,14 +157,16 @@ function verificaPosicao($posicao, $matriz){
 	$posicaoLetra = $posicao[2];
 	$linhaAtual = $posicao[0];
 	$colunaAtual = $posicao[1];
+	$linhaAnterior = $posicao[0] - 1;
+	$colunaAnterior = $posicao[1] - 1;
 	$proximaLinha = $posicao[0] + 1;
 	$proximaColuna = $posicao[1] + 1;
-	if ($matriz[$proximaLinha][$colunaAtual] == " - "){
+	if ($matriz[$proximaLinha][$colunaAtual] == " - " && $matriz[$linhaAnterior][$colunaAtual] == " - "){
 		$array[0] = "V";
 		$array[1] = $linhaAtual - $posicaoLetra;
 		$array[2] = $colunaAtual;
 	}
-	if ($matriz[$linhaAtual][$proximaColuna] == " - "){
+	if ($matriz[$linhaAtual][$proximaColuna] == " - "  && $matriz[$linhaAtual][$colunaAnterior] == " - "){
 		$array[0] = "H";
 		$array[1] = $linhaAtual;
 		$array[2] = $colunaAtual - $posicaoLetra;
@@ -176,10 +178,11 @@ function verificaPosicao($posicao, $matriz){
 function montaHorizontal($palavraHorizontal,$matrizHorizontal,$linhaAtual,$colunaAtual ){
 	$arrayLetraPalavra = pegaLetraPalavra($palavraHorizontal);
 	$tam =  count($arrayLetraPalavra);
+	$maxColuna = $colunaAtual + $tam;
 	$lastIndex = 0;
 	for ($linha = 0; $linha < 10; $linha++) {
 		for ($coluna = 0; $coluna < 15; $coluna++) {
-				if ($linha == $linhaAtual && $coluna >= $colunaAtual){
+				if ($linha == $linhaAtual && $coluna >= $colunaAtual && $coluna < $maxColuna){
 					$matrizHorizontal[$linha][$coluna] = $arrayLetraPalavra[$lastIndex];
 					$lastIndex = $lastIndex + 1;
 					$colunaAtual = $colunaAtual + 1;
